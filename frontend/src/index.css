@@ -2,20 +2,66 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+@layer base {
+  body {
+    @apply bg-[#F9FBFC] text-slate-800 font-sans antialiased;
+    background-image:
+      radial-gradient(at 0% 0%, rgba(16, 185, 129, 0.03) 0, transparent 50%),
+      radial-gradient(at 50% 0%, rgba(59, 130, 246, 0.02) 0, transparent 50%);
+  }
 }
 
-body {
-  @apply bg-slate-50 text-slate-900 font-sans;
+@layer components {
+  .card-premium {
+    @apply bg-white border border-slate-100 rounded-[2rem] shadow-premium hover:shadow-elevated transition-all duration-500;
+  }
+
+  .btn-gradient {
+    @apply bg-gradient-to-br from-brand-500 to-brand-600 text-white shadow-lg shadow-brand-200 hover:shadow-brand-300 hover:scale-[1.02] active:scale-95 transition-all duration-300;
+  }
+
+  .input-field {
+    @apply w-full px-5 py-4 bg-slate-50 border border-slate-200 rounded-2xl focus:outline-none focus:ring-4 focus:ring-brand-500/10 focus:border-brand-500 transition-all duration-300;
+  }
+
+  .nav-link {
+    @apply flex items-center gap-3 px-5 py-3.5 rounded-2xl transition-all duration-300 font-semibold;
+  }
+
+  .nav-link-active {
+    @apply bg-brand-50 text-brand-600 shadow-sm;
+  }
+
+  .nav-link-inactive {
+    @apply text-slate-500 hover:bg-slate-50 hover:text-slate-800;
+  }
 }
 
-.glass {
-  @apply bg-white/70 backdrop-blur-md border border-white/20 shadow-xl;
+/* Smooth scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
 }
 
-.btn-primary {
-  @apply bg-accent text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition-all active:scale-95;
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-slate-200 rounded-full hover:bg-slate-300;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }

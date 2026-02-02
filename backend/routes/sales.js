@@ -16,7 +16,7 @@ router.post('/checkout', (req, res) => {
 
     try {
         db.transaction(() => {
-            const items = db.prepare('SELECT * FROM cart WHERE session_id = ?').all(session_id);
+            const items = db.prepare('SELECT cart.*, drug.name FROM cart JOIN drug ON cart.drug_id = drug.id WHERE session_id = ?').all(session_id);
 
             for (const item of items) {
                 // Record Sale
@@ -28,6 +28,17 @@ router.post('/checkout', (req, res) => {
                 // Decrement Net Stock
                 db.prepare('UPDATE net_stock SET total_quantity = total_quantity - ? WHERE drug_id = ?')
                     .run(item.quantity, item.drug_id);
+
+                // Log Activity
+                db.prepare('INSERT INTO events (user_id, action, details) VALUES (?, ?, ?)')
+                    .run(pharmacist_id, 'sale', `Sold ${item.quantity}x ${item.name} (${serial_number})`);
+
+                // Check Low Stock
+                const net = db.prepare('SELECT total_quantity FROM net_stock WHERE drug_id = ?').get(item.drug_id);
+                if (net && net.total_quantity < 10) {
+                    db.prepare('INSERT INTO events (user_id, action, details) VALUES (?, ?, ?)')
+                        .run(pharmacist_id, 'low_stock', `${item.name} is running low (${net.total_quantity} left)`);
+                }
             }
 
             // Clear Cart

@@ -102,4 +102,7 @@ db.exec(schema);
 const seedStaff = db.prepare('INSERT OR IGNORE INTO staff (username, password, full_name, role) VALUES (?, ?, ?, ?)');
 seedStaff.run('admin', '$2a$10$xV.0.P.Y.Z.X.1.2.3.4.5.6.7.8.9.0.1.2.3.4.5.6.7.8.9.0', 'System Manager', 'Manager');
 
+const seedSupplier = db.prepare('INSERT OR IGNORE INTO supplier (id, name, contact_person) VALUES (?, ?, ?)');
+seedSupplier.run(1, 'General Supplier', 'Internal');
+
 module.exports = db;
