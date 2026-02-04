@@ -1,4 +1,11 @@
 # Pharmacy Management System (PMS)
+## 📸 Project Screenshots
+
+Screenshots showing the Pharmacy Management System in action (dashboard, inventory, sales, login, etc.) are available here:
+
+👉 **[View screenshots](./images)**
+
+> The images demonstrate real working flows of the application, including inventory updates, sales processing, and authentication.
 
 A full-stack web application for managing pharmacy inventory, sales, and stock levels.
 
