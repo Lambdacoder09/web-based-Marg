@@ -1,5 +1,8 @@
 # Pharmacy Management System (PMS)
 ## 📸 Project Screenshots
+![Pharmacy Management System Cover](./images/cover.png)
+
+# Pharmacy Management System (PMS)
 
 Screenshots showing the Pharmacy Management System in action (dashboard, inventory, sales, login, etc.) are available here:
 
