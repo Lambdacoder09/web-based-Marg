@@ -1,6 +1,6 @@
 # Pharmacy Management System (PMS)
 ## 📸 Project Screenshots
-![Pharmacy Management System Cover](.images/screenshot-cover.png)
+![Pharmacy Management System Cover](./images/screenshot-cover.png)
 
 # Pharmacy Management System (PMS)
 
